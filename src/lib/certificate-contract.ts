@@ -1,5 +1,6 @@
-import { Keypair, contract } from "@stellar/stellar-sdk";
-import { Client, networks } from "certificate-contract-bindings";
+import { Keypair } from "@stellar/stellar-sdk";
+import { basicNodeSigner } from "@stellar/stellar-sdk/contract";
+import { Client, networks } from "@/lib/certificate-client";
 
 // Server-only: talks to the certificate contract using the platform's admin
 // key. Never import this from a client component — CERTIFICATE_ADMIN_SECRET
@@ -20,7 +21,7 @@ function getClient(): Client {
 
   if (!client) {
     const admin = Keypair.fromSecret(ADMIN_SECRET);
-    const signer = contract.basicNodeSigner(admin, NETWORK_PASSPHRASE);
+    const signer = basicNodeSigner(admin, NETWORK_PASSPHRASE);
     client = new Client({
       contractId: CONTRACT_ID,
       networkPassphrase: NETWORK_PASSPHRASE,
