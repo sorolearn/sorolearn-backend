@@ -2,11 +2,9 @@
 //   stellar contract bindings typescript \
 //     --contract-id CCVFIMTLHN2YFVKFITJYU4PWDIGNG2Q7AWWF4GPKBUBQOJEOGRDTIK5K \
 //     --network testnet --output-dir <tmp>
-// Inlined here (rather than kept as a separate contract/certificate/bindings
-// package) because a plain `file:` dependency's own dependencies don't get
-// installed by a monorepo build that only runs `npm install` inside
-// frontend/ — Vercel's build failed with exactly that unresolved import.
-// Regenerate this file directly if the contract's interface changes.
+// Inlined here rather than consumed as a package, so the backend builds with
+// a plain `npm install`. The contract lives in the separate sorolearn-contract
+// repo: regenerate this file whenever its public interface changes.
 import {
   AssembledTransaction,
   Client as ContractClient,
